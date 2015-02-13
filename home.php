@@ -23,9 +23,9 @@ $r = redisLink();
     </form>
     <div id="homeinfobox">
         <?php
-        $r->zcard("followers:" . $User['id']) ?> followers<br>
+        echo $r->zcard("followers:" . $User['id']) ?> followers<br>
         <?php
-        $r->zcard("following:" . $User['id']) ?> following<br>
+        echo $r->zcard("following:" . $User['id']) ?> following<br>
     </div>
 </div>
 <?php
