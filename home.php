@@ -1,4 +1,4 @@
-<?
+<?php
 include("retwis.php");
 if (!isLoggedIn()) {
     header("Location: index.php");
@@ -9,7 +9,8 @@ $r = redisLink();
 ?>
 <div id="postform">
 <form method="POST" action="post.php">
-<?=utf8entities($User['username'])?>, what you are doing?
+<?php
+utf8entities($User['username'])?>, what you are doing?
 <br>
 <table>
 <tr><td><textarea cols="70" rows="3" name="status"></textarea></td></tr>
@@ -17,11 +18,13 @@ $r = redisLink();
 </table>
 </form>
 <div id="homeinfobox">
-<?=$r->zcard("followers:".$User['id'])?> followers<br>
-<?=$r->zcard("following:".$User['id'])?> following<br>
+<?php
+$r->zcard("followers:".$User['id'])?> followers<br>
+<?php
+$r->zcard("following:".$User['id'])?> following<br>
 </div>
 </div>
-<?
+<?php
 $start = gt("start") === false ? 0 : intval(gt("start"));
 showUserPostsWithPagination(false,$User['id'],$start,10);
 include("footer.php")
