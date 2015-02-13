@@ -1,5 +1,7 @@
 <?php
-require 'Predis/Autoloader.php';
+
+require "vendor/autoload.php";
+
 Predis\Autoloader::register();
 
 function getrand()

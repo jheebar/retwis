@@ -1,0 +1,15 @@
+{
+  "name": "antirez/retwis",
+  "type": "project",
+  "description": "A Twitter-toy clone written in PHP and Redis, used in the early days to introduce Redis data types.",
+  "keywords": [
+    "nosql",
+    "redis",
+    "retwis"
+  ],
+  "homepage": "https://github.com/antirez/retwis",
+  "require": {
+    "php": ">=5.3.2",
+    "predis/predis": "dev-master"
+  }
+}
