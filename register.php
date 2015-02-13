@@ -10,30 +10,31 @@ if (gt("password") != gt("password2"))
 # The form is ok, check if the username is available
 $username = gt("username");
 $password = gt("password");
-$r = redisLink();
-if ($r->hget("users",$username))
+$r        = redisLink();
+if ($r->hget("users", $username))
     goback("Sorry the selected username is already in use.");
 
 # Everything is ok, Register the user!
-$userid = $r->incr("next_user_id");
+$userid     = $r->incr("next_user_id");
 $authsecret = getrand();
-$r->hset("users",$username,$userid);
+$r->hset("users", $username, $userid);
 $r->hmset("user:$userid",
-    "username",$username,
-    "password",$password,
-    "auth",$authsecret);
-$r->hset("auths",$authsecret,$userid);
+          "username", $username,
+          "password", $password,
+          "auth", $authsecret);
+$r->hset("auths", $authsecret, $userid);
 
-$r->zadd("users_by_time",time(),$username);
+$r->zadd("users_by_time", time(), $username);
 
 # User registered! Login her / him.
-setcookie("auth",$authsecret,time()+3600*24*365);
+setcookie("auth", $authsecret, time() + 3600 * 24 * 365);
 
 include("header.php");
 ?>
 <h2>Welcome aboard!</h2>
 Hey <?php
-utf8entities($username)?>, now you have an account, <a href="index.php">a good start is to write your first message!</a>.
+utf8entities($username) ?>, now you have an account, <a href="index.php">a good start is to write your first
+    message!</a>.
 <?php
 include("footer.php")
 ?>

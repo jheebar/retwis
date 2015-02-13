@@ -6,14 +6,14 @@ if (!isLoggedIn()) {
     exit;
 }
 
-$r = redisLink();
+$r             = redisLink();
 $newauthsecret = getrand();
-$userid = $User['id'];
-$oldauthsecret = $r->hget("user:$userid","auth");
+$userid        = $User['id'];
+$oldauthsecret = $r->hget("user:$userid", "auth");
 
-$r->hset("user:$userid","auth",$newauthsecret);
-$r->hset("auths",$newauthsecret,$userid);
-$r->hdel("auths",$oldauthsecret);
+$r->hset("user:$userid", "auth", $newauthsecret);
+$r->hset("auths", $newauthsecret, $userid);
+$r->hdel("auths", $oldauthsecret);
 
 header("Location: index.php");
 ?>
