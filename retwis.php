@@ -168,7 +168,11 @@ function showPost($id, $isSelfPost)
             </tr>
             <tr>
                 <td align="right">
-                    <input type="submit" formaction="repost.php" value="repost">
+
+                    <?php if (!$isSelfPost) { ?>
+                        <input type="submit" formaction="repost.php" value="repost">
+                    <?php } ?>
+                    
                     <input type="submit" formaction="comment.php" value="comment">
 
                     <?php if ($isSelfPost) { ?>
