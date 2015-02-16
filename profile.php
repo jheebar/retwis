@@ -1,7 +1,6 @@
 <?php
 include("retwis.php");
 include("header.php");
-
 $r = redisLink();
 if (!gt("u") || !($userid = $r->hget("users", gt("u")))) {
     header("Location: index.php");
@@ -19,6 +18,6 @@ if (isLoggedIn() && $User['id'] != $userid) {
 ?>
 <?php
 $start = gt("start") === false ? 0 : intval(gt("start"));
-showUserPostsWithPagination(gt("u"), $userid, $start, 10);
+showUserPostsWithPagination(gt("u"), $userid, $start, 10, "SELF");
 include("footer.php")
 ?>
